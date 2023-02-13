@@ -27,7 +27,7 @@ class S implements WidgetsLocalizations {
 
   String get button => "Button";
 
-  String get chameleonMiniApp => "Chameleon Mini App";
+  String get chameleonMiniApp => "Chameleon Mini";
 
   String get clear => "Clear";
 

@@ -17,6 +17,11 @@ import '../../services/chameleonClient.dart';
 import '../../services/crapto1.dart';
 import '../../generated/i18n.dart';
 
+final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    foregroundColor: Colors.black87,
+    backgroundColor: Colors.lime,
+    disabledBackgroundColor: Colors.grey);
+
 class SlotView extends StatefulWidget {
   SlotView(this.slot, this.client,
       {Key? key, this.modes, this.buttonModes, this.longPressButtonModes})
@@ -34,7 +39,7 @@ class _SlotViewState extends State<SlotView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FocusNode uidFocusNode = FocusNode();
 
-  _uidChanged(String str) => widget.slot.uid = str;
+  _uidChanged(String str) => widget.slot.uid = str.toUpperCase();
 
   void _changeUid(int Function(int) func) {
     String? uid = widget.slot.uid;
@@ -48,7 +53,7 @@ class _SlotViewState extends State<SlotView> {
       return;
     }
     setState(() {
-      widget.slot.uid = newUid.toRadixString(16).toUpperCase();
+      widget.slot.uid = newUid.toRadixString(16);
     });
   }
 
@@ -416,7 +421,7 @@ class _SlotViewState extends State<SlotView> {
               builder: (FormFieldState state) {
                 return InputDecorator(
                   decoration: InputDecoration(
-                    icon: const Icon(Icons.functions),
+                    icon: const Icon(Icons.devices_other),
                     labelText: S.of(context).mode,
                   ),
                   child: DropdownButtonHideUnderline(
@@ -445,14 +450,14 @@ class _SlotViewState extends State<SlotView> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                          icon: const Icon(Icons.plus_one),
-                          onPressed: () {
-                            _changeUid((x) => x + 1);
-                          }),
-                      IconButton(
                           icon: const Icon(Icons.exposure_minus_1),
                           onPressed: () {
                             _changeUid((x) => x - 1);
+                          }),
+                      IconButton(
+                          icon: const Icon(Icons.plus_one),
+                          onPressed: () {
+                            _changeUid((x) => x + 1);
                           }),
                       IconButton(
                         icon: const Icon(Icons.nfc),
@@ -526,21 +531,19 @@ class _SlotViewState extends State<SlotView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(right: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
+                        style: flatButtonStyle,
                         child: Text(S.of(context).refresh),
                         onPressed: widget.client.connected ? _refresh : null,
                       ),
                     ),
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
+                        style: flatButtonStyle,
                         child: Text(S.of(context).apply),
                         onPressed: widget.client.connected ? _apply : null,
                       ),
@@ -553,21 +556,19 @@ class _SlotViewState extends State<SlotView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(right: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
+                        style: flatButtonStyle,
                         child: Text(S.of(context).upload),
                         onPressed: widget.client.connected ? _upload : null,
                       ),
                     ),
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
+                        style: flatButtonStyle,
                         child: Text(S.of(context).download),
                         onPressed: widget.client.connected ? _download : null,
                       ),
@@ -580,22 +581,21 @@ class _SlotViewState extends State<SlotView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(right: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
+                        style: flatButtonStyle,
                         child: Text(S.of(context).clear),
                         onPressed: widget.client.connected ? _clear : null,
                       ),
                     ),
                     Container(
+                      width: 120,
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.lime,
-                            disabledBackgroundColor: Colors.grey),
-                        child: Text(S.of(context).mfkey32),
+                        style: flatButtonStyle,
+                        child: Text(S.of(context).mfkey32,
+                            style: TextStyle(fontStyle: FontStyle.italic)),
                         onPressed: widget.client.connected ? _mfkey32 : null,
                       ),
                     ),

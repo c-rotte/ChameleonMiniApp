@@ -169,46 +169,47 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldState,
-      appBar: AppBar(
-        title: Text(S.of(context).chameleonMiniApp),
-        bottom: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          tabs: slots.map((Slot slot) {
-            return Tab(
-              icon: slotIcons[slot.index],
-              text: '${S.of(context).slot} ${slot.index + 1}',
-            );
-          }).toList(),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.usb,
-              color: client.connected ? Colors.blue : Colors.black,
+    return WillPopScope(
+        child: Scaffold(
+          key: scaffoldState,
+          appBar: AppBar(
+            title: Text(S.of(context).chameleonMiniApp),
+            bottom: TabBar(
+              controller: _tabController,
+              isScrollable: true,
+              tabs: slots.map((Slot slot) {
+                return Tab(icon: slotIcons[slot.index]);
+              }).toList(),
             ),
-            onPressed: _connect,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.usb,
+                  color: client.connected ? Colors.blue : Colors.black,
+                ),
+                onPressed: _connect,
+              ),
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: _pushSettings,
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: _pushSettings,
+          body: TabBarView(
+            controller: _tabController,
+            children: slots.map((Slot slot) {
+              return SlotView(
+                slot,
+                client,
+                modes: modes,
+                buttonModes: buttonModes,
+                longPressButtonModes: longPressButtonModes,
+              );
+            }).toList(),
           ),
-        ],
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: slots.map((Slot slot) {
-          return SlotView(
-            slot,
-            client,
-            modes: modes,
-            buttonModes: buttonModes,
-            longPressButtonModes: longPressButtonModes,
-          );
-        }).toList(),
-      ),
-    );
+        ),
+        onWillPop: () async {
+          return false;
+        });
   }
 }
