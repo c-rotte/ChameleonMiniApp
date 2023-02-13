@@ -36,6 +36,22 @@ class _SlotViewState extends State<SlotView> {
 
   _uidChanged(String str) => widget.slot.uid = str;
 
+  void _changeUid(int Function(int) func) {
+    String? uid = widget.slot.uid;
+    if (uid == null) {
+      return;
+    }
+    int oldUid = int.parse(uid, radix: 16);
+    int newUid = func(oldUid);
+    if ((oldUid < 0) != (newUid < 0)) {
+      // overflow
+      return;
+    }
+    setState(() {
+      widget.slot.uid = newUid.toRadixString(16).toUpperCase();
+    });
+  }
+
   _uidEditingComplete() {
     uidFocusNode.unfocus();
     print(widget.slot.uid);
@@ -425,9 +441,24 @@ class _SlotViewState extends State<SlotView> {
               decoration: InputDecoration(
                   icon: const Icon(Icons.fingerprint),
                   labelText: S.of(context).uid,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.nfc),
-                    onPressed: _nfc,
+                  suffixIcon: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                          icon: const Icon(Icons.plus_one),
+                          onPressed: () {
+                            _changeUid((x) => x + 1);
+                          }),
+                      IconButton(
+                          icon: const Icon(Icons.exposure_minus_1),
+                          onPressed: () {
+                            _changeUid((x) => x - 1);
+                          }),
+                      IconButton(
+                        icon: const Icon(Icons.nfc),
+                        onPressed: _nfc,
+                      )
+                    ],
                   )),
               keyboardType: TextInputType.text,
               inputFormatters: <TextInputFormatter>[
