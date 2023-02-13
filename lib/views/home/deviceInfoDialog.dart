@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../../generated/i18n.dart';
 
 class DeviceInfoDialog extends StatefulWidget {
-  DeviceInfoDialog(this.version, this.rssi, {Key? key,}) : super(key: key);
+  DeviceInfoDialog(
+    this.version,
+    this.rssi, {
+    Key? key,
+  }) : super(key: key);
 
   final String version, rssi;
 
@@ -12,7 +16,6 @@ class DeviceInfoDialog extends StatefulWidget {
 }
 
 class _DeviceInfoDialogState extends State<DeviceInfoDialog> {
-
   _reset() {
     Navigator.of(context).pop('reset');
   }

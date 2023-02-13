@@ -14,7 +14,7 @@ class S implements WidgetsLocalizations {
   static S current = const $en();
 
   static const GeneratedLocalizationsDelegate delegate =
-    GeneratedLocalizationsDelegate();
+      GeneratedLocalizationsDelegate();
 
   static S of(BuildContext context) => Localizations.of(context, S);
 
@@ -22,34 +22,63 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get apply => "Apply";
+
   String get attacking => "Attacking";
+
   String get button => "Button";
+
   String get chameleonMiniApp => "Chameleon Mini App";
+
   String get clear => "Clear";
+
   String get close => "Close";
+
   String get deviceInfo => "Device Info";
+
   String get disconnect => "Disconnect";
+
   String get download => "Download";
+
   String get downloading => "Downloading";
+
   String get effectiveAfterRestartingTheApp => "Effective after restarting app";
+
   String get english => "English";
+
   String get generalSetting => "General Setting";
+
   String get language => "Language";
+
   String get longPressButton => "Long Press Button";
+
   String get memorySize => "Memory Size";
+
   String get mfkey32 => "mfkey32";
+
   String get mode => "Mode";
+
   String get notAvailable => "N/A";
+
   String get refresh => "Refresh";
+
   String get reset => "Reset";
+
   String get selectLanguage => "Select Language";
+
   String get settings => "Settings";
+
   String get slot => "Slot";
+
   String get systemDefault => "System Default";
+
   String get traditionalChinese => "Traditional Chinese";
+
   String get uid => "UID";
+
   String get upload => "Upload";
+
   String get usbDeviceNotFound => "USB device not found";
+
   String get usbDisconnected => "USB Disconnected";
 }
 
@@ -61,60 +90,88 @@ class $zh_TW extends S {
 
   @override
   String get usbDeviceNotFound => "找不到 USB 裝置";
+
   @override
   String get disconnect => "斷線";
+
   @override
   String get traditionalChinese => "正體中文";
+
   @override
   String get upload => "上傳";
+
   @override
   String get effectiveAfterRestartingTheApp => "重啟App後生效";
+
   @override
   String get language => "語言";
+
   @override
   String get slot => "槽位";
+
   @override
   String get notAvailable => "不可用";
+
   @override
   String get button => "按鈕";
+
   @override
   String get mode => "模式";
+
   @override
   String get systemDefault => "系統預設";
+
   @override
   String get uid => "UID";
+
   @override
   String get download => "下載";
+
   @override
   String get downloading => "下載中";
+
   @override
   String get english => "英文";
+
   @override
   String get usbDisconnected => "USB 已斷線";
+
   @override
   String get close => "關閉";
+
   @override
   String get selectLanguage => "選擇語言";
+
   @override
   String get settings => "設定";
+
   @override
   String get apply => "套用";
+
   @override
   String get clear => "清除";
+
   @override
   String get refresh => "刷新";
+
   @override
   String get mfkey32 => "解密";
+
   @override
   String get attacking => "解密中";
+
   @override
   String get deviceInfo => "裝置資訊";
+
   @override
   String get longPressButton => "長按按鈕";
+
   @override
   String get memorySize => "記憶體大小";
+
   @override
   String get reset => "重置";
+
   @override
   String get generalSetting => "一般設定";
 }
@@ -133,7 +190,8 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     ];
   }
 
-  LocaleListResolutionCallback listResolution({Locale? fallback, bool withCountry = true}) {
+  LocaleListResolutionCallback listResolution(
+      {Locale? fallback, bool withCountry = true}) {
     return (List<Locale>? locales, Iterable<Locale> supported) {
       if (locales == null || locales.isEmpty) {
         return fallback ?? supported.first;
@@ -143,7 +201,8 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     };
   }
 
-  LocaleResolutionCallback resolution({Locale? fallback, bool withCountry = true}) {
+  LocaleResolutionCallback resolution(
+      {Locale? fallback, bool withCountry = true}) {
     return (Locale? locale, Iterable<Locale> supported) {
       return _resolve(locale, fallback, supported, withCountry);
     };
@@ -161,7 +220,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
           S.current = const $en();
           return SynchronousFuture<S>(S.current);
         default:
-          // NO-OP.
+        // NO-OP.
       }
     }
     S.current = const S();
@@ -177,7 +236,8 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
   ///
   /// Internal method to resolve a locale from a list of locales.
   ///
-  Locale _resolve(Locale? locale, Locale? fallback, Iterable<Locale> supported, bool withCountry) {
+  Locale _resolve(Locale? locale, Locale? fallback, Iterable<Locale> supported,
+      bool withCountry) {
     if (locale == null || !_isSupported(locale, withCountry)) {
       return fallback ?? supported.first;
     }
@@ -210,7 +270,8 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
         }
 
         // If no country requirement is requested, check if this locale has no country.
-        if (true != withCountry && supportedLocale.countryCode?.isEmpty != false) {
+        if (true != withCountry &&
+            supportedLocale.countryCode?.isEmpty != false) {
           return true;
         }
       }
@@ -220,7 +281,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
 }
 
 String? getLang(Locale? l) => l == null
-  ? null
-  : l.countryCode?.isEmpty != false
-    ? l.languageCode
-    : l.toString();
+    ? null
+    : l.countryCode?.isEmpty != false
+        ? l.languageCode
+        : l.toString();

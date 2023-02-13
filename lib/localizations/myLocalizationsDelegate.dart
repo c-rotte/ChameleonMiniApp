@@ -7,12 +7,13 @@ import '../generated/i18n.dart';
 
 class MyLocalizationsDelegate extends LocalizationsDelegate<S> {
   static MyLocalizationsDelegate delegate = MyLocalizationsDelegate._internal();
-  
+
   const MyLocalizationsDelegate._internal();
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      const Locale.fromSubtags(languageCode: "zh", scriptCode: "Hant", countryCode: "TW"),
+      const Locale.fromSubtags(
+          languageCode: "zh", scriptCode: "Hant", countryCode: "TW"),
       const Locale("zh", "TW"),
       const Locale.fromSubtags(languageCode: "zh", scriptCode: "Hant"),
       const Locale("zh"),
@@ -34,24 +35,24 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<S> {
     };
   }
 
-  Locale? _resolve(Locale? locale, Locale? fallback, Iterable<Locale> supported) {
-    if (locale == null)
-      return fallback ?? supported.first;
+  Locale? _resolve(
+      Locale? locale, Locale? fallback, Iterable<Locale> supported) {
+    if (locale == null) return fallback ?? supported.first;
 
     if (supported.contains(locale)) // maybe languageCode-scriptCode-countryCode
       return locale;
 
-    var superLocale = Locale(locale.languageCode, locale.countryCode); // languageCode-countryCode
-    if (supported.contains(superLocale))
-      return superLocale;
+    var superLocale = Locale(
+        locale.languageCode, locale.countryCode); // languageCode-countryCode
+    if (supported.contains(superLocale)) return superLocale;
 
-    superLocale = Locale.fromSubtags(languageCode: locale.languageCode, scriptCode: locale.scriptCode); // languageCode-scriptCode
-    if (supported.contains(superLocale))
-      return superLocale;
+    superLocale = Locale.fromSubtags(
+        languageCode: locale.languageCode,
+        scriptCode: locale.scriptCode); // languageCode-scriptCode
+    if (supported.contains(superLocale)) return superLocale;
 
-    superLocale = Locale(locale.languageCode);  // languageCode
-    if (supported.contains(superLocale))
-      return superLocale;
+    superLocale = Locale(locale.languageCode); // languageCode
+    if (supported.contains(superLocale)) return superLocale;
 
     return fallback;
   }
@@ -69,7 +70,7 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<S> {
         case "en":
           return SynchronousFuture<S>(const $en());
         default:
-          // NO-OP.
+        // NO-OP.
       }
     }
     return SynchronousFuture<S>(const S());
@@ -77,7 +78,7 @@ class MyLocalizationsDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) =>
-    _resolve(locale, null, supportedLocales) != null;
+      _resolve(locale, null, supportedLocales) != null;
 
   @override
   bool shouldReload(MyLocalizationsDelegate old) => false;
